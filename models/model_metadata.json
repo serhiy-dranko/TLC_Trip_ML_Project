@@ -1,0 +1,26 @@
+{
+  "model": "hist_gradient_boosting",
+  "train_start": "2026-01-01",
+  "train_end": "2026-04-30",
+  "features": [
+    "hour",
+    "day_of_week",
+    "month",
+    "is_weekend",
+    "temperature_2m",
+    "precipitation",
+    "snowfall",
+    "wind_speed_10m",
+    "lag_1",
+    "lag_24",
+    "lag_168",
+    "rolling_24",
+    "Borough",
+    "PULocationID"
+  ],
+  "val_mae": 3.6562107657221,
+  "baseline_mae": 5.0987,
+  "sklearn_version": "1.9.1",
+  "pandas_version": "2.3.3",
+  "date": "2026-10-07"
+}

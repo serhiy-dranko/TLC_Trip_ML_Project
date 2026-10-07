@@ -8,9 +8,10 @@ from src.ingest import (
 from src.validate import validate_all
 from src.audit import audit_trips
 from src.joins_check import join_readiness
-
 from src.clean import run_clean
 from src.features import run_features
+from src.train import run_train
+from src.predict import run_predict
 
 
 def run_ingest(config):
@@ -46,6 +47,12 @@ STAGES = {
     "joins": join_readiness,
     "clean": run_clean,
     "features": run_day2,
+    "train": run_train,
+    "predict": lambda config: run_predict(
+        config,
+        "data/processed/test.parquet",
+        "results/predictions.parquet"
+    )
 }
 
 

@@ -13,6 +13,7 @@ paths:
   interim: "data/interim"
   processed: "data/processed"
   results: "results"
+  models: "models"
 
 yellow_trip_columns:
   - VendorID
@@ -70,3 +71,11 @@ cleaning_thresholds:
   min_duration_min: 1
   max_duration_min: 180
   max_distance_miles: 100
+
+baseline_mae: 5.0987
+
+model:
+  name: "hist_gradient_boosting"
+  ridge_alpha: 1.0
+  hgb_learning_rate: 0.1
+  hgb_max_depth: 6
