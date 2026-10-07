@@ -1,0 +1,37 @@
+source,issue,count,pct_of_rows,proposed_rule
+yellow,pickup outside file month,85,0.0004,Drop rows whose pickup month differs from the file's month.
+yellow,pickup outside window,15,0.0001,Drop rows with pickup outside the configured window.
+yellow,dropoff before pickup,6,0.0,Drop rows where dropoff is earlier than pickup.
+yellow,duration under 1 min (non-negative),519694,2.2757,Drop trips shorter than 1 minute.
+yellow,duration over 180 min,8252,0.0361,Drop trips longer than 3 hours.
+yellow,distance <= 0,704850,3.0865,Drop trips with non-positive distance.
+yellow,distance > 100 miles,916,0.004,Drop trips above 100 miles as implausible for NYC taxis.
+yellow,fare_amount <= 0,145591,0.6375,Drop trips with non-positive fare.
+yellow,total_amount <= 0,135958,0.5954,Drop trips with non-positive total amount.
+yellow,passenger_count null,5825780,25.5108,Keep rows; passenger_count is not used for demand counts.
+yellow,PULocationID null,0,0.0,Drop rows without a pickup zone (cannot be assigned to a zone-hour).
+yellow,"PULocationID in (264, 265)",36288,0.1589,Drop unknown / outside-NYC pickup zones.
+yellow,PULocationID not in zone lookup,0,0.0,Drop rows whose pickup zone is not in the lookup.
+green,pickup outside file month,68,0.0266,Drop rows whose pickup month differs from the file's month.
+green,pickup outside window,8,0.0031,Drop rows with pickup outside the configured window.
+green,dropoff before pickup,5,0.002,Drop rows where dropoff is earlier than pickup.
+green,duration under 1 min (non-negative),8142,3.1908,Drop trips shorter than 1 minute.
+green,duration over 180 min,1051,0.4119,Drop trips longer than 3 hours.
+green,distance <= 0,8762,3.4337,Drop trips with non-positive distance.
+green,distance > 100 miles,61,0.0239,Drop trips above 100 miles as implausible for NYC taxis.
+green,fare_amount <= 0,4400,1.7243,Drop trips with non-positive fare.
+green,total_amount <= 0,1154,0.4522,Drop trips with non-positive total amount.
+green,passenger_count null,36027,14.1185,Keep rows; passenger_count is not used for demand counts.
+green,PULocationID null,0,0.0,Drop rows without a pickup zone (cannot be assigned to a zone-hour).
+green,"PULocationID in (264, 265)",849,0.3327,Drop unknown / outside-NYC pickup zones.
+green,PULocationID not in zone lookup,0,0.0,Drop rows whose pickup zone is not in the lookup.
+fhv,pickup outside file month,0,0.0,Drop rows whose pickup month differs from the file's month.
+fhv,pickup outside window,0,0.0,Drop rows with pickup outside the configured window.
+fhv,dropoff before pickup,1,0.0,Drop rows where dropoff is earlier than pickup.
+fhv,duration under 1 min (non-negative),35080,0.2764,Drop trips shorter than 1 minute.
+fhv,duration over 180 min,36846,0.2903,Drop trips longer than 3 hours.
+fhv,PULocationID null,11034756,86.9516,Drop rows without a pickup zone (cannot be assigned to a zone-hour).
+fhv,"PULocationID in (264, 265)",9635,0.0759,Drop unknown / outside-NYC pickup zones.
+fhv,PULocationID not in zone lookup,0,0.0,Drop rows whose pickup zone is not in the lookup.
+yellow,column 'request_source' present in 1 of 6 monthly files,5,,Select by name; fill with null or exclude if absent in some months.
+green,column 'request_source' present in 1 of 6 monthly files,5,,Select by name; fill with null or exclude if absent in some months.

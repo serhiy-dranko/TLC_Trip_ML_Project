@@ -1,0 +1,72 @@
+data_window:
+  start_month: "2026-01"
+  end_month: "2026-06"
+
+urls:
+  yellow_trips_base: "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_{month}.parquet"
+  green_trips_base: "https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_{month}.parquet"
+  fhv_trips_base: "https://d37ci6vzurychx.cloudfront.net/trip-data/fhv_tripdata_{month}.parquet"
+  zone_lookup: "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
+
+paths:
+  raw: "data/raw"
+  interim: "data/interim"
+  processed: "data/processed"
+  results: "results"
+
+yellow_trip_columns:
+  - VendorID
+  - tpep_pickup_datetime
+  - tpep_dropoff_datetime
+  - payment_type
+  - PULocationID
+  - DOLocationID
+  - passenger_count
+  - trip_distance
+  - tolls_amount
+  - fare_amount
+  - tip_amount
+  - congestion_surcharge
+  - airport_fee
+  - cbd_congestion_fee
+  - total_amount
+
+green_trip_columns:
+  - VendorID
+  - lpep_pickup_datetime
+  - lpep_dropoff_datetime
+  - payment_type
+  - PULocationID
+  - DOLocationID
+  - passenger_count
+  - trip_distance
+  - tolls_amount
+  - fare_amount
+  - tip_amount
+  - congestion_surcharge
+  - cbd_congestion_fee
+  - total_amount
+
+fhv_trip_columns:
+  - dispatching_base_num
+  - pickup_datetime
+  - dropoff_datetime
+  - PULocationID
+  - DOLocationID
+  - SR_Flag
+  - Affiliated_base_number
+
+weather:
+  latitude: 40.7128
+  longitude: -74.0060
+  hourly:
+    - "temperature_2m"
+    - "precipitation"
+    - "snowfall"
+    - "wind_speed_10m"
+  timezone: "America/New_York"
+
+cleaning_thresholds:
+  min_duration_min: 1
+  max_duration_min: 180
+  max_distance_miles: 100
