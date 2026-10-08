@@ -1,0 +1,5 @@
+model,split,mae
+hist_gradient_boosting,validation,3.6562107657221
+hist_gradient_boosting,test,3.547461733335708
+baseline_lag_168,validation,5.098660986001217
+baseline_lag_168,test,4.680581761006289

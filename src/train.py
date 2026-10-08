@@ -1,5 +1,6 @@
 import logging
 import json
+import os
 from pathlib import Path
 import pandas as pd
 import numpy as np
@@ -46,7 +47,7 @@ def build_pipeline(model_name, config, numeric_cols, categorical_cols):
 
     # Models
     models = {
-        "ridge": Ridge(alpha=config["model"]["ridge_alpha"]),
+        "ridge": Ridge(alpha=config["model"]["ridge_alpha"], random_state=42),
         "hist_gradient_boosting": HistGradientBoostingRegressor(
             learning_rate=config["model"]["hgb_learning_rate"],
             max_depth=config["model"]["hgb_max_depth"],
@@ -162,8 +163,8 @@ def run_train(config):
             "baseline_mae": baseline_mae
         }])
 
-        path = results / "model_comparison.csv"
-        row.to_csv(path, mode="a", header=not path.exists(), index=False)
+        path = os.fspath(results / "model_comparison.csv")
+        row.to_csv(path, mode="a", header=not Path(path).exists(), index=False)
 
         rows.append((model_name, val_mae, pipe))
 
@@ -177,26 +178,47 @@ def run_train(config):
     val["error"] = np.abs(val["demand"] - val["pred"])
 
     # ========================================
-    # MAE by hour
+    # MAE by hour + count (dual axis)
     # ========================================
-    hour_mae = val.groupby("hour")["error"].mean()
-    hour_mae.to_csv(results / "mae_by_hour.csv")
 
-    plt.figure(figsize=(10, 5))
-    sns.lineplot(x=hour_mae.index, y=hour_mae.values, marker="o")
-    plt.title("MAE by Hour of Day")
-    plt.xlabel("Hour")
-    plt.ylabel("MAE")
-    plt.grid(True, alpha=0.3)
-    plt.tight_layout()
-    plt.savefig(results / "mae_by_hour.png", dpi=100)
+    hour_mae = val.groupby("hour")["error"].mean()
+    hour_count = val.groupby("hour")["demand"].sum()
+
+    # Save as proper DataFrame with correct column names
+    hour_stats = pd.DataFrame({
+        "hour": hour_mae.index,
+        "mae": hour_mae.values,
+        "count": hour_count.values
+    })
+    hour_stats.to_csv(os.fspath(results / "mae_by_hour.csv"), index=False)
+
+    fig, ax1 = plt.subplots(figsize=(12, 6))
+
+    # MAE left axis
+    ax1.plot(hour_mae.index, hour_mae.values,
+            color="blue", marker="o", linewidth=2, label="MAE")
+    ax1.set_xlabel("Hour")
+    ax1.set_ylabel("MAE", color="blue")
+    ax1.tick_params(axis="y", labelcolor="blue")
+    ax1.grid(True, alpha=0.3)
+
+    # Count right axis
+    ax2 = ax1.twinx()
+    ax2.bar(hour_count.index, hour_count.values,
+            color="lightgray", alpha=0.6, label="Count")
+    ax2.set_ylabel("Count", color="gray")
+    ax2.tick_params(axis="y", labelcolor="gray")
+
+    plt.title("MAE by Hour with Count (Dual Axis)")
+    fig.tight_layout()
+    plt.savefig(os.fspath(results / "mae_by_hour_dual_axis.png"), dpi=120)
     plt.close()
 
     # ========================================
     # MAE by borough
     # ========================================
     borough_mae = val.groupby("Borough")["error"].mean()
-    borough_mae.to_csv(results / "mae_by_borough.csv")
+    borough_mae.to_csv(os.fspath(results / "mae_by_borough.csv"))
 
     plt.figure(figsize=(10, 5))
     colors_borough = sns.color_palette("viridis", len(borough_mae))
@@ -205,31 +227,75 @@ def run_train(config):
     plt.title("MAE by Borough")
     plt.xlabel("Borough")
     plt.ylabel("MAE")
+    plt.grid(True, alpha=0.3, axis="y")
     plt.tight_layout()
-    plt.savefig(results / "mae_by_borough.png", dpi=100)
+    plt.savefig(os.fspath(results / "mae_by_borough.png"), dpi=100)
     plt.close()
 
     # ========================================
-    # MAE by rain
+    # MAE by weather (Dry, Rain, Snow)
+    # DATA VALIDATION
     # ========================================
-    rain_mae = val.groupby(val["precipitation"] > 0)["error"].mean()
-    rain_labels = ["Dry", "Rain"]
+    
+    # Check data availability
+    rain_count = (val["precipitation"] > 0).sum()
+    snow_count = (val["snowfall"] > 0).sum()
+    dry_count = (val["precipitation"] == 0).sum()
+    
+    logger.info(f"Weather data counts - Dry: {dry_count}, Rain: {rain_count}, Snow: {snow_count}")
+    
+    weather_data = []
+    
+    # Dry condition
+    weather_data.append({
+        "weather": "Dry",
+        "mae": val[val["precipitation"] == 0]["error"].mean(),
+        "count": dry_count
+    })
+    
+    # Rain condition
+    weather_data.append({
+        "weather": "Rain",
+        "mae": val[val["precipitation"] > 0]["error"].mean(),
+        "count": rain_count
+    })
+    
+    # Snow condition (only if data exists)
+    if snow_count > 0:
+        snow_mae = val[val["snowfall"] > 0]["error"].mean()
+        weather_data.append({
+            "weather": "Snow",
+            "mae": snow_mae,
+            "count": snow_count
+        })
+        logger.info(f"Snow MAE: {snow_mae:.4f}")
+    else:
+        logger.warning(f"No snow data in validation set (snowfall > 0 records: {snow_count})")
+    
+    # Create DataFrame from list of dicts
+    weather_df = pd.DataFrame(weather_data)
+    weather_df.to_csv(os.fspath(results / "mae_by_weather.csv"), index=False)
+    
+    # Extract for plotting
+    labels = weather_df["weather"].tolist()
+    values = weather_df["mae"].tolist()
 
-    plt.figure(figsize=(6, 5))
-    colors_rain = sns.color_palette("coolwarm", len(rain_mae))
-    plt.bar(range(len(rain_mae)), rain_mae.values, color=colors_rain)
-    plt.xticks(range(len(rain_mae)), rain_labels)
-    plt.title("MAE: Rain vs Dry")
+    plt.figure(figsize=(7, 5))
+    colors_weather = sns.color_palette("coolwarm", len(values))
+    plt.bar(range(len(values)), values, color=colors_weather)
+    plt.xticks(range(len(values)), labels)
+    plt.title("MAE: Dry vs Rain vs Snow")
     plt.xlabel("Weather Condition")
     plt.ylabel("MAE")
+    plt.grid(True, alpha=0.3, axis="y")
     plt.tight_layout()
-    plt.savefig(results / "mae_by_rain.png", dpi=100)
+    plt.savefig(os.fspath(results / "mae_by_weather.png"), dpi=120)
     plt.close()
 
     # ========================================
     # Save model
     # ========================================
-    joblib.dump(winner_pipe, models_dir / "demand_model.joblib")
+    joblib.dump(winner_pipe, os.fspath(models_dir / "demand_model.joblib"))
 
     metadata = {
         "model": winner_name,
@@ -243,7 +309,7 @@ def run_train(config):
         "date": str(pd.Timestamp.today().date())
     }
 
-    with open(models_dir / "model_metadata.json", "w") as f:
+    with open(os.fspath(models_dir / "model_metadata.json"), "w") as f:
         json.dump(metadata, f, indent=2)
 
     logger.info(f"Winner: {winner_name} (MAE={winner_mae:.4f})")
