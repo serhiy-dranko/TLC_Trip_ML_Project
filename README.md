@@ -87,6 +87,13 @@ week-5/
 
 ---
 
+
+## How the files connect
+
+[View the Architecture Diagram](https://lucid.app/lucidchart/156c0904-5144-4137-83de-84f88f7d300f/edit?viewport_loc=-637%2C-63%2C3454%2C1495%2C0_0&invitationId=inv_6fcde881-ac94-47fc-830e-ac88cbabdff9)
+
+---
+
 ## Method
 
 - **Grain:** one row per (pickup zone, hour). Zone-hours with no trips are kept as demand 0 (265 zones x 4,344 hours).
