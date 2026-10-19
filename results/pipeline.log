@@ -1,0 +1,347 @@
+2026-10-09 09:50:24,000 [INFO] Pipeline started: 2026-10-09 09:50:24, stage = all
+2026-10-09 09:50:24,000 [INFO] ============================================================
+2026-10-09 09:50:24,001 [INFO] FULL PIPELINE: ingest -> clean -> features -> train -> test -> predict
+2026-10-09 09:50:24,001 [INFO] ============================================================
+2026-10-09 09:50:24,001 [INFO] [1/6] ingest
+2026-10-09 09:50:24,001 [INFO] ------------------------------------------------------------
+2026-10-09 09:50:24,001 [INFO] Starting stage: ingest
+2026-10-09 09:50:24,002 [INFO] Skipping yellow 2026-01: already exists
+2026-10-09 09:50:24,002 [INFO] Skipping yellow 2026-02: already exists
+2026-10-09 09:50:24,002 [INFO] Skipping yellow 2026-03: already exists
+2026-10-09 09:50:24,002 [INFO] Skipping yellow 2026-04: already exists
+2026-10-09 09:50:24,002 [INFO] Skipping yellow 2026-05: already exists
+2026-10-09 09:50:24,002 [INFO] Skipping yellow 2026-06: already exists
+2026-10-09 09:50:24,003 [INFO] Skipping green 2026-01: already exists
+2026-10-09 09:50:24,003 [INFO] Skipping green 2026-02: already exists
+2026-10-09 09:50:24,003 [INFO] Skipping green 2026-03: already exists
+2026-10-09 09:50:24,003 [INFO] Skipping green 2026-04: already exists
+2026-10-09 09:50:24,003 [INFO] Skipping green 2026-05: already exists
+2026-10-09 09:50:24,003 [INFO] Skipping green 2026-06: already exists
+2026-10-09 09:50:24,003 [INFO] Skipping fhv 2026-01: already exists
+2026-10-09 09:50:24,003 [INFO] Skipping fhv 2026-02: already exists
+2026-10-09 09:50:24,003 [INFO] Skipping fhv 2026-03: already exists
+2026-10-09 09:50:24,003 [INFO] Skipping fhv 2026-04: already exists
+2026-10-09 09:50:24,003 [INFO] Skipping fhv 2026-05: already exists
+2026-10-09 09:50:24,004 [INFO] Skipping fhv 2026-06: already exists
+2026-10-09 09:50:24,004 [INFO] Skipping zone lookup: already exists
+2026-10-09 09:50:24,008 [INFO] Zone lookup OK
+2026-10-09 09:50:24,015 [INFO] Saved zone lookup parquet
+2026-10-09 09:50:25,634 [INFO] Saved interim yellow 2026-01
+2026-10-09 09:50:27,091 [INFO] Saved interim yellow 2026-02
+2026-10-09 09:50:28,746 [INFO] Saved interim yellow 2026-03
+2026-10-09 09:50:30,482 [INFO] Saved interim yellow 2026-04
+2026-10-09 09:50:32,224 [INFO] Saved interim yellow 2026-05
+2026-10-09 09:50:33,833 [INFO] Saved interim yellow 2026-06
+2026-10-09 09:50:33,895 [INFO] Saved interim green 2026-01
+2026-10-09 09:50:33,936 [INFO] Saved interim green 2026-02
+2026-10-09 09:50:33,981 [INFO] Saved interim green 2026-03
+2026-10-09 09:50:34,025 [INFO] Saved interim green 2026-04
+2026-10-09 09:50:34,070 [INFO] Saved interim green 2026-05
+2026-10-09 09:50:34,142 [INFO] Saved interim green 2026-06
+2026-10-09 09:50:34,682 [WARNING] fhv 2026-01: 1646462 null PULocationID (84.8%)
+2026-10-09 09:50:35,230 [INFO] Saved interim fhv 2026-01
+2026-10-09 09:50:35,785 [WARNING] fhv 2026-02: 1793034 null PULocationID (92.0%)
+2026-10-09 09:50:36,357 [INFO] Saved interim fhv 2026-02
+2026-10-09 09:50:37,009 [WARNING] fhv 2026-03: 2021238 null PULocationID (85.6%)
+2026-10-09 09:50:37,739 [INFO] Saved interim fhv 2026-03
+2026-10-09 09:50:38,320 [WARNING] fhv 2026-04: 1783421 null PULocationID (83.9%)
+2026-10-09 09:50:38,958 [INFO] Saved interim fhv 2026-04
+2026-10-09 09:50:39,615 [WARNING] fhv 2026-05: 2068483 null PULocationID (85.4%)
+2026-10-09 09:50:40,471 [INFO] Saved interim fhv 2026-05
+2026-10-09 09:50:41,135 [WARNING] fhv 2026-06: 1722118 null PULocationID (91.0%)
+2026-10-09 09:50:41,789 [INFO] Saved interim fhv 2026-06
+2026-10-09 09:50:41,800 [INFO] Fetching weather
+2026-10-09 09:50:43,129 [INFO] Weather OK
+2026-10-09 09:50:43,137 [INFO] Saved weather parquet
+2026-10-09 09:50:43,701 [INFO] Holidays OK
+2026-10-09 09:50:43,703 [INFO] Saved holidays parquet
+2026-10-09 09:50:44,210 [WARNING] trips_fhv_2026-01.parquet: 1646462 null PULocationID (84.8%)
+2026-10-09 09:50:44,253 [WARNING] trips_fhv_2026-02.parquet: 1793034 null PULocationID (92.0%)
+2026-10-09 09:50:44,306 [WARNING] trips_fhv_2026-03.parquet: 2021238 null PULocationID (85.6%)
+2026-10-09 09:50:44,349 [WARNING] trips_fhv_2026-04.parquet: 1783421 null PULocationID (83.9%)
+2026-10-09 09:50:44,445 [WARNING] trips_fhv_2026-05.parquet: 2068483 null PULocationID (85.4%)
+2026-10-09 09:50:44,489 [WARNING] trips_fhv_2026-06.parquet: 1722118 null PULocationID (91.0%)
+2026-10-09 09:50:44,494 [INFO] Zone lookup OK
+2026-10-09 09:50:44,516 [INFO] Weather OK
+2026-10-09 09:50:44,529 [INFO] Holidays OK
+2026-10-09 09:50:44,530 [INFO] All validation checks passed
+2026-10-09 09:50:45,216 [INFO] Audited yellow 2026-01
+2026-10-09 09:50:45,797 [INFO] Audited yellow 2026-02
+2026-10-09 09:50:46,473 [INFO] Audited yellow 2026-03
+2026-10-09 09:50:47,241 [INFO] Audited yellow 2026-04
+2026-10-09 09:50:47,949 [INFO] Audited yellow 2026-05
+2026-10-09 09:50:48,697 [INFO] Audited yellow 2026-06
+2026-10-09 09:50:48,742 [INFO] Audited green 2026-01
+2026-10-09 09:50:48,756 [INFO] Audited green 2026-02
+2026-10-09 09:50:48,769 [INFO] Audited green 2026-03
+2026-10-09 09:50:48,787 [INFO] Audited green 2026-04
+2026-10-09 09:50:48,802 [INFO] Audited green 2026-05
+2026-10-09 09:50:48,815 [INFO] Audited green 2026-06
+2026-10-09 09:50:49,264 [INFO] Audited fhv 2026-01
+2026-10-09 09:50:49,742 [INFO] Audited fhv 2026-02
+2026-10-09 09:50:50,301 [INFO] Audited fhv 2026-03
+2026-10-09 09:50:50,793 [INFO] Audited fhv 2026-04
+2026-10-09 09:50:51,329 [INFO] Audited fhv 2026-05
+2026-10-09 09:50:51,784 [INFO] Audited fhv 2026-06
+2026-10-09 09:50:51,801 [INFO] Saved audit with 36 rows -> results\data_audit.csv
+2026-10-09 09:50:52,341 [INFO] Saved join readiness report -> results\join_readiness.md
+2026-10-09 09:50:52,342 [INFO] Finished stage: ingest (28.3s)
+2026-10-09 09:50:52,342 [INFO] [2/6] clean
+2026-10-09 09:50:52,342 [INFO] ------------------------------------------------------------
+2026-10-09 09:50:52,342 [INFO] Starting stage: clean
+2026-10-09 09:50:52,855 [INFO] drop_pickup_outside_file_month: removed 7
+2026-10-09 09:50:53,093 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:50:53,349 [INFO] drop_dropoff_before_pickup: removed 1
+2026-10-09 09:50:53,736 [INFO] drop_short_duration (<1 min): removed 83744
+2026-10-09 09:50:54,078 [INFO] drop_long_duration (>180 min): removed 1755
+2026-10-09 09:50:54,311 [INFO] drop_nonpositive_distance: removed 98392
+2026-10-09 09:50:54,546 [INFO] drop_implausible_distance (>100 miles): removed 156
+2026-10-09 09:50:54,770 [INFO] drop_nonpositive_fare: removed 36213
+2026-10-09 09:50:54,997 [INFO] drop_nonpositive_total: removed 35
+2026-10-09 09:50:55,101 [INFO] drop_null_zone: removed 0
+2026-10-09 09:50:55,338 [INFO] drop_unknown_zones: removed 4543
+2026-10-09 09:50:55,460 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:50:56,921 [INFO] Cleaned yellow 2026-01: removed 224846
+2026-10-09 09:50:57,382 [INFO] drop_pickup_outside_file_month: removed 16
+2026-10-09 09:50:57,586 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:50:57,808 [INFO] drop_dropoff_before_pickup: removed 2
+2026-10-09 09:50:58,077 [INFO] drop_short_duration (<1 min): removed 73602
+2026-10-09 09:50:58,345 [INFO] drop_long_duration (>180 min): removed 1528
+2026-10-09 09:50:58,561 [INFO] drop_nonpositive_distance: removed 99938
+2026-10-09 09:50:58,807 [INFO] drop_implausible_distance (>100 miles): removed 150
+2026-10-09 09:50:59,017 [INFO] drop_nonpositive_fare: removed 24850
+2026-10-09 09:50:59,227 [INFO] drop_nonpositive_total: removed 59
+2026-10-09 09:50:59,325 [INFO] drop_null_zone: removed 0
+2026-10-09 09:50:59,549 [INFO] drop_unknown_zones: removed 3859
+2026-10-09 09:50:59,657 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:00,999 [INFO] Cleaned yellow 2026-02: removed 204004
+2026-10-09 09:51:01,548 [INFO] drop_pickup_outside_file_month: removed 19
+2026-10-09 09:51:01,784 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:02,035 [INFO] drop_dropoff_before_pickup: removed 2
+2026-10-09 09:51:02,353 [INFO] drop_short_duration (<1 min): removed 89187
+2026-10-09 09:51:02,673 [INFO] drop_long_duration (>180 min): removed 1180
+2026-10-09 09:51:02,994 [INFO] drop_nonpositive_distance: removed 92536
+2026-10-09 09:51:03,270 [INFO] drop_implausible_distance (>100 miles): removed 145
+2026-10-09 09:51:03,529 [INFO] drop_nonpositive_fare: removed 19763
+2026-10-09 09:51:03,781 [INFO] drop_nonpositive_total: removed 79
+2026-10-09 09:51:03,904 [INFO] drop_null_zone: removed 0
+2026-10-09 09:51:04,159 [INFO] drop_unknown_zones: removed 4611
+2026-10-09 09:51:04,283 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:05,845 [INFO] Cleaned yellow 2026-03: removed 207522
+2026-10-09 09:51:06,371 [INFO] drop_pickup_outside_file_month: removed 12
+2026-10-09 09:51:06,618 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:06,749 [INFO] drop_dropoff_before_pickup: removed 0
+2026-10-09 09:51:07,084 [INFO] drop_short_duration (<1 min): removed 88176
+2026-10-09 09:51:07,399 [INFO] drop_long_duration (>180 min): removed 1249
+2026-10-09 09:51:07,665 [INFO] drop_nonpositive_distance: removed 66015
+2026-10-09 09:51:07,922 [INFO] drop_implausible_distance (>100 miles): removed 120
+2026-10-09 09:51:08,178 [INFO] drop_nonpositive_fare: removed 14040
+2026-10-09 09:51:08,430 [INFO] drop_nonpositive_total: removed 61
+2026-10-09 09:51:08,570 [INFO] drop_null_zone: removed 0
+2026-10-09 09:51:08,832 [INFO] drop_unknown_zones: removed 4630
+2026-10-09 09:51:08,969 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:10,572 [INFO] Cleaned yellow 2026-04: removed 174303
+2026-10-09 09:51:11,150 [INFO] drop_pickup_outside_file_month: removed 14
+2026-10-09 09:51:11,457 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:11,656 [INFO] drop_dropoff_before_pickup: removed 0
+2026-10-09 09:51:12,058 [INFO] drop_short_duration (<1 min): removed 93355
+2026-10-09 09:51:12,397 [INFO] drop_long_duration (>180 min): removed 1428
+2026-10-09 09:51:12,741 [INFO] drop_nonpositive_distance: removed 83373
+2026-10-09 09:51:12,992 [INFO] drop_implausible_distance (>100 miles): removed 118
+2026-10-09 09:51:13,310 [INFO] drop_nonpositive_fare: removed 13741
+2026-10-09 09:51:13,562 [INFO] drop_nonpositive_total: removed 142
+2026-10-09 09:51:13,721 [INFO] drop_null_zone: removed 0
+2026-10-09 09:51:13,985 [INFO] drop_unknown_zones: removed 4773
+2026-10-09 09:51:14,180 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:15,929 [INFO] Cleaned yellow 2026-05: removed 196944
+2026-10-09 09:51:16,577 [INFO] drop_pickup_outside_file_month: removed 17
+2026-10-09 09:51:16,839 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:17,107 [INFO] drop_dropoff_before_pickup: removed 1
+2026-10-09 09:51:17,478 [INFO] drop_short_duration (<1 min): removed 91626
+2026-10-09 09:51:17,798 [INFO] drop_long_duration (>180 min): removed 1106
+2026-10-09 09:51:18,081 [INFO] drop_nonpositive_distance: removed 98214
+2026-10-09 09:51:18,340 [INFO] drop_implausible_distance (>100 miles): removed 110
+2026-10-09 09:51:18,628 [INFO] drop_nonpositive_fare: removed 13434
+2026-10-09 09:51:18,880 [INFO] drop_nonpositive_total: removed 107
+2026-10-09 09:51:19,016 [INFO] drop_null_zone: removed 0
+2026-10-09 09:51:19,275 [INFO] drop_unknown_zones: removed 4250
+2026-10-09 09:51:19,457 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:21,025 [INFO] Cleaned yellow 2026-06: removed 208865
+2026-10-09 09:51:21,038 [INFO] drop_pickup_outside_file_month: removed 22
+2026-10-09 09:51:21,041 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:21,043 [INFO] drop_dropoff_before_pickup: removed 0
+2026-10-09 09:51:21,046 [INFO] drop_short_duration (<1 min): removed 1225
+2026-10-09 09:51:21,048 [INFO] drop_long_duration (>180 min): removed 136
+2026-10-09 09:51:21,051 [INFO] drop_nonpositive_distance: removed 554
+2026-10-09 09:51:21,054 [INFO] drop_implausible_distance (>100 miles): removed 6
+2026-10-09 09:51:21,060 [INFO] drop_nonpositive_fare: removed 557
+2026-10-09 09:51:21,064 [INFO] drop_nonpositive_total: removed 29
+2026-10-09 09:51:21,065 [INFO] drop_null_zone: removed 0
+2026-10-09 09:51:21,068 [INFO] drop_unknown_zones: removed 57
+2026-10-09 09:51:21,071 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:21,155 [INFO] Cleaned green 2026-01: removed 2586
+2026-10-09 09:51:21,163 [INFO] drop_pickup_outside_file_month: removed 11
+2026-10-09 09:51:21,166 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:21,169 [INFO] drop_dropoff_before_pickup: removed 1
+2026-10-09 09:51:21,173 [INFO] drop_short_duration (<1 min): removed 1178
+2026-10-09 09:51:21,176 [INFO] drop_long_duration (>180 min): removed 135
+2026-10-09 09:51:21,179 [INFO] drop_nonpositive_distance: removed 640
+2026-10-09 09:51:21,181 [INFO] drop_implausible_distance (>100 miles): removed 12
+2026-10-09 09:51:21,183 [INFO] drop_nonpositive_fare: removed 544
+2026-10-09 09:51:21,186 [INFO] drop_nonpositive_total: removed 32
+2026-10-09 09:51:21,188 [INFO] drop_null_zone: removed 0
+2026-10-09 09:51:21,192 [INFO] drop_unknown_zones: removed 48
+2026-10-09 09:51:21,195 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:21,229 [INFO] Cleaned green 2026-02: removed 2601
+2026-10-09 09:51:21,241 [INFO] drop_pickup_outside_file_month: removed 9
+2026-10-09 09:51:21,245 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:21,247 [INFO] drop_dropoff_before_pickup: removed 1
+2026-10-09 09:51:21,251 [INFO] drop_short_duration (<1 min): removed 1312
+2026-10-09 09:51:21,255 [INFO] drop_long_duration (>180 min): removed 196
+2026-10-09 09:51:21,259 [INFO] drop_nonpositive_distance: removed 588
+2026-10-09 09:51:21,262 [INFO] drop_implausible_distance (>100 miles): removed 11
+2026-10-09 09:51:21,264 [INFO] drop_nonpositive_fare: removed 719
+2026-10-09 09:51:21,267 [INFO] drop_nonpositive_total: removed 29
+2026-10-09 09:51:21,269 [INFO] drop_null_zone: removed 0
+2026-10-09 09:51:21,273 [INFO] drop_unknown_zones: removed 44
+2026-10-09 09:51:21,276 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:21,311 [INFO] Cleaned green 2026-03: removed 2909
+2026-10-09 09:51:21,321 [INFO] drop_pickup_outside_file_month: removed 3
+2026-10-09 09:51:21,326 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:21,328 [INFO] drop_dropoff_before_pickup: removed 0
+2026-10-09 09:51:21,332 [INFO] drop_short_duration (<1 min): removed 1493
+2026-10-09 09:51:21,336 [INFO] drop_long_duration (>180 min): removed 206
+2026-10-09 09:51:21,340 [INFO] drop_nonpositive_distance: removed 553
+2026-10-09 09:51:21,343 [INFO] drop_implausible_distance (>100 miles): removed 9
+2026-10-09 09:51:21,345 [INFO] drop_nonpositive_fare: removed 667
+2026-10-09 09:51:21,348 [INFO] drop_nonpositive_total: removed 35
+2026-10-09 09:51:21,349 [INFO] drop_null_zone: removed 0
+2026-10-09 09:51:21,352 [INFO] drop_unknown_zones: removed 36
+2026-10-09 09:51:21,354 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:21,389 [INFO] Cleaned green 2026-04: removed 3002
+2026-10-09 09:51:21,400 [INFO] drop_pickup_outside_file_month: removed 10
+2026-10-09 09:51:21,404 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:21,406 [INFO] drop_dropoff_before_pickup: removed 0
+2026-10-09 09:51:21,410 [INFO] drop_short_duration (<1 min): removed 1524
+2026-10-09 09:51:21,414 [INFO] drop_long_duration (>180 min): removed 211
+2026-10-09 09:51:21,416 [INFO] drop_nonpositive_distance: removed 504
+2026-10-09 09:51:21,418 [INFO] drop_implausible_distance (>100 miles): removed 11
+2026-10-09 09:51:21,422 [INFO] drop_nonpositive_fare: removed 574
+2026-10-09 09:51:21,425 [INFO] drop_nonpositive_total: removed 78
+2026-10-09 09:51:21,427 [INFO] drop_null_zone: removed 0
+2026-10-09 09:51:21,430 [INFO] drop_unknown_zones: removed 54
+2026-10-09 09:51:21,432 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:21,471 [INFO] Cleaned green 2026-05: removed 2966
+2026-10-09 09:51:21,481 [INFO] drop_pickup_outside_file_month: removed 13
+2026-10-09 09:51:21,485 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:21,490 [INFO] drop_dropoff_before_pickup: removed 3
+2026-10-09 09:51:21,494 [INFO] drop_short_duration (<1 min): removed 1400
+2026-10-09 09:51:21,497 [INFO] drop_long_duration (>180 min): removed 163
+2026-10-09 09:51:21,500 [INFO] drop_nonpositive_distance: removed 547
+2026-10-09 09:51:21,503 [INFO] drop_implausible_distance (>100 miles): removed 11
+2026-10-09 09:51:21,507 [INFO] drop_nonpositive_fare: removed 762
+2026-10-09 09:51:21,510 [INFO] drop_nonpositive_total: removed 40
+2026-10-09 09:51:21,512 [INFO] drop_null_zone: removed 0
+2026-10-09 09:51:21,516 [INFO] drop_unknown_zones: removed 62
+2026-10-09 09:51:21,517 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:21,560 [INFO] Cleaned green 2026-06: removed 3001
+2026-10-09 09:51:21,883 [INFO] drop_pickup_outside_file_month: removed 0
+2026-10-09 09:51:21,987 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:22,100 [INFO] drop_dropoff_before_pickup: removed 1
+2026-10-09 09:51:22,237 [INFO] drop_short_duration (<1 min): removed 6265
+2026-10-09 09:51:22,375 [INFO] drop_long_duration (>180 min): removed 5195
+2026-10-09 09:51:22,410 [INFO] drop_null_zone: removed 1637788
+2026-10-09 09:51:22,439 [INFO] drop_unknown_zones: removed 799
+2026-10-09 09:51:22,447 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:22,649 [INFO] Cleaned fhv 2026-01: removed 1650048
+2026-10-09 09:51:22,974 [INFO] drop_pickup_outside_file_month: removed 0
+2026-10-09 09:51:23,077 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:23,125 [INFO] drop_dropoff_before_pickup: removed 0
+2026-10-09 09:51:23,260 [INFO] drop_short_duration (<1 min): removed 5303
+2026-10-09 09:51:23,395 [INFO] drop_long_duration (>180 min): removed 5853
+2026-10-09 09:51:23,424 [INFO] drop_null_zone: removed 1783166
+2026-10-09 09:51:23,445 [INFO] drop_unknown_zones: removed 1653
+2026-10-09 09:51:23,449 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:23,548 [INFO] Cleaned fhv 2026-02: removed 1795975
+2026-10-09 09:51:23,942 [INFO] drop_pickup_outside_file_month: removed 0
+2026-10-09 09:51:24,068 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:24,122 [INFO] drop_dropoff_before_pickup: removed 0
+2026-10-09 09:51:24,349 [INFO] drop_short_duration (<1 min): removed 6266
+2026-10-09 09:51:24,567 [INFO] drop_long_duration (>180 min): removed 6625
+2026-10-09 09:51:24,612 [INFO] drop_null_zone: removed 2011162
+2026-10-09 09:51:24,651 [INFO] drop_unknown_zones: removed 1860
+2026-10-09 09:51:24,662 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:24,830 [INFO] Cleaned fhv 2026-03: removed 2025913
+2026-10-09 09:51:25,195 [INFO] drop_pickup_outside_file_month: removed 0
+2026-10-09 09:51:25,310 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:25,359 [INFO] drop_dropoff_before_pickup: removed 0
+2026-10-09 09:51:25,506 [INFO] drop_short_duration (<1 min): removed 5868
+2026-10-09 09:51:25,663 [INFO] drop_long_duration (>180 min): removed 5517
+2026-10-09 09:51:25,700 [INFO] drop_null_zone: removed 1774912
+2026-10-09 09:51:25,735 [INFO] drop_unknown_zones: removed 1651
+2026-10-09 09:51:25,746 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:25,907 [INFO] Cleaned fhv 2026-04: removed 1787948
+2026-10-09 09:51:26,293 [INFO] drop_pickup_outside_file_month: removed 0
+2026-10-09 09:51:26,426 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:26,482 [INFO] drop_dropoff_before_pickup: removed 0
+2026-10-09 09:51:26,651 [INFO] drop_short_duration (<1 min): removed 6479
+2026-10-09 09:51:26,822 [INFO] drop_long_duration (>180 min): removed 7208
+2026-10-09 09:51:26,859 [INFO] drop_null_zone: removed 2058054
+2026-10-09 09:51:26,894 [INFO] drop_unknown_zones: removed 1644
+2026-10-09 09:51:26,904 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:27,068 [INFO] Cleaned fhv 2026-05: removed 2073385
+2026-10-09 09:51:27,408 [INFO] drop_pickup_outside_file_month: removed 0
+2026-10-09 09:51:27,514 [INFO] drop_pickup_outside_window: removed 0
+2026-10-09 09:51:27,562 [INFO] drop_dropoff_before_pickup: removed 0
+2026-10-09 09:51:27,702 [INFO] drop_short_duration (<1 min): removed 4899
+2026-10-09 09:51:27,839 [INFO] drop_long_duration (>180 min): removed 6448
+2026-10-09 09:51:27,867 [INFO] drop_null_zone: removed 1712981
+2026-10-09 09:51:27,890 [INFO] drop_unknown_zones: removed 1690
+2026-10-09 09:51:27,895 [INFO] drop_zone_not_in_lookup: removed 0
+2026-10-09 09:51:28,019 [INFO] Cleaned fhv 2026-06: removed 1726018
+2026-10-09 09:51:28,022 [INFO] Saved cleaning report -> results\cleaning_report.csv
+2026-10-09 09:51:28,032 [INFO] Finished stage: clean (35.7s)
+2026-10-09 09:51:28,032 [INFO] [3/6] features
+2026-10-09 09:51:28,032 [INFO] ------------------------------------------------------------
+2026-10-09 09:51:28,032 [INFO] Starting stage: features
+2026-10-09 09:51:33,396 [INFO] Loaded cleaned trips: 23,489,555 rows
+2026-10-09 09:51:36,041 [INFO] Aggregated zone-hour rows: 671,594
+2026-10-09 09:51:36,080 [INFO] Grid size: 1,151,160 rows
+2026-10-09 09:51:37,401 [INFO] Dropped warm-up rows: 44520
+2026-10-09 09:51:42,646 [INFO] Train rows: 718,680
+2026-10-09 09:51:42,646 [INFO] Val rows: 197,160
+2026-10-09 09:51:42,647 [INFO] Test rows: 190,800
+2026-10-09 09:51:42,657 [INFO] Baseline MAE (lag_168): 5.0987
+2026-10-09 09:51:42,658 [INFO] Day-2 features pipeline completed.
+2026-10-09 09:51:43,016 [INFO] Finished stage: features (15.0s)
+2026-10-09 09:51:43,016 [INFO] [4/6] train
+2026-10-09 09:51:43,016 [INFO] ------------------------------------------------------------
+2026-10-09 09:51:43,016 [INFO] Starting stage: train
+2026-10-09 09:53:11,794 [INFO] Weather data counts - Dry: 165360, Rain: 31800, Snow: 0
+2026-10-09 09:53:11,817 [WARNING] No snow data in validation set (snowfall > 0 records: 0)
+2026-10-09 09:53:11,982 [INFO] Winner: hist_gradient_boosting (MAE=3.6562)
+2026-10-09 09:53:11,982 [INFO] Model saved.
+2026-10-09 09:53:12,001 [INFO] Finished stage: train (89.0s)
+2026-10-09 09:53:12,001 [INFO] [5/6] test
+2026-10-09 09:53:12,001 [INFO] ------------------------------------------------------------
+2026-10-09 09:53:12,001 [INFO] Starting stage: test
+2026-10-09 09:53:12,183 [INFO] Final model: hist_gradient_boosting
+2026-10-09 09:53:12,183 [INFO] Test rows: 190,800
+2026-10-09 09:53:12,970 [INFO] ============================================================
+2026-10-09 09:53:12,970 [INFO] FINAL TEST RESULTS
+2026-10-09 09:53:12,970 [INFO] Model    val MAE: 3.6562 | test MAE: 3.5475
+2026-10-09 09:53:12,971 [INFO] Baseline val MAE: 5.0987 | test MAE: 4.6806
+2026-10-09 09:53:12,971 [INFO] Gap (test - val): -0.1087
+2026-10-09 09:53:12,971 [INFO] Model vs baseline on test: 24.2% lower MAE
+2026-10-09 09:53:12,971 [INFO] ============================================================
+2026-10-09 09:53:12,974 [INFO] Saved results\test_results.csv
+2026-10-09 09:53:12,974 [INFO] Test evaluated once. Do not change the model or features after this point.
+2026-10-09 09:53:12,979 [INFO] Finished stage: test (1.0s)
+2026-10-09 09:53:12,979 [INFO] [6/6] predict
+2026-10-09 09:53:12,980 [INFO] ------------------------------------------------------------
+2026-10-09 09:53:12,980 [INFO] Starting stage: predict
+2026-10-09 09:53:14,162 [INFO] Finished stage: predict (1.2s)
+2026-10-09 09:53:14,162 [INFO] ============================================================
+2026-10-09 09:53:14,163 [INFO] PIPELINE COMPLETED in 170.2s
+2026-10-09 09:53:14,163 [INFO] ============================================================
+2026-10-09 09:53:14,163 [INFO] Pipeline finished: 2026-10-09 09:53:14
